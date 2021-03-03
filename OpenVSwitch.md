@@ -15,6 +15,6 @@
 > ovs-tcpundump：tcpdump的补丁，解析OpenFlow的消息；
 > ovs-bugtool：管理openvswitch的bug信息。
 
-![image-20210303190928839](D:\mynote\tupian\image-20210303190928839.png)
+![image-20210303190928839](https://github.com/zb1997/mynote/main/tupiian/image-20210303190928839.png)
 
 主要的动作通过ovs-xxctl -h 进行搜索，实在不行再进行百度
