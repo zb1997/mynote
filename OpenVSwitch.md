@@ -1,6 +1,6 @@
 ## 架构图
 
-![image-20210303190912191](D:\mynote\tupian\image-20210303190912191.png)
+![image-20210303190912191](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190912191.png)
 
 > ovs-vswitchd： 主要模块，实现switch的daemon，包括一个支持流交换的Linux内核模块；
 > ovsdb-server： 轻量级数据库服务器，提供ovs-vswitchd获取配置信息，例如vlan、port等信息；
@@ -15,6 +15,6 @@
 > ovs-tcpundump：tcpdump的补丁，解析OpenFlow的消息；
 > ovs-bugtool：管理openvswitch的bug信息。
 
-![image-20210303190928839](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190844663.png)
+![image-20210303190928839](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190928839.png)
 
 主要的动作通过ovs-xxctl -h 进行搜索，实在不行再进行百度

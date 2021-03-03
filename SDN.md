@@ -46,7 +46,7 @@
       1. 流量可视化困难
       2. 当前流控技术大多是静态分配带宽
    4. 无法按需，不可编程
-2. software　defined　network![image-20210303190844663](D:\mynote\tupian\image-20210303190844663.png)
+2. software　defined　network![image-20210303190844663](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190844663.png)
 3. SDN最主要的三个特性：
    1. 网络可开放编程
    2. 控制平面和数据平面分离
