@@ -48,7 +48,8 @@
       1. 流量可视化困难
       2. 当前流控技术大多是静态分配带宽
    4. 无法按需，不可编程
-2. software　defined　network![image-20210303190844663](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190844663.png)
+2. software　defined　network
+   ![image-20210303190844663](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303190844663.png)
 3. SDN最主要的三个特性：
    1. 网络可开放编程
    2. 控制平面和数据平面分离
@@ -66,14 +67,18 @@
 
 2. openflow：三张表 流表、组表、meter表
 
-   1. 流表：每一个流表由匹配与,指令集和计数器构成，匹配域区分不同的数据流计数器记录匹配流表的数据包的数目,字节数等相关数目![image-20210303195713606](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303195713606.png)
-   2. 组表：OpenFlow组表的表项被流表项（Flow Entry）所引用，提供组播报文转发功能。一系列的Group表项组成了Group Table，根据Group ID可检索到相应Group表项，每个Group表项包含多个动作Bucket，每个Bucket包含多个动作，Bucket内的动作执行顺序依照Action Set的顺序。![image-20210303200059176](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303200059176.png)
+   1. 流表：每一个流表由匹配与,指令集和计数器构成，匹配域区分不同的数据流计数器记录匹配流表的数据包的数目,字节数等相关数目
+      ![image-20210303195713606](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303195713606.png)
+   2. 组表：OpenFlow组表的表项被流表项（Flow Entry）所引用，提供组播报文转发功能。一系列的Group表项组成了Group Table，根据Group ID可检索到相应Group表项，每个Group表项包含多个动作Bucket，每个Bucket包含多个动作，Bucket内的动作执行顺序依照Action Set的顺序。
+      ![image-20210303200059176](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303200059176.png)
       1. 组表分为四种，ALL：执行所有桶的所有动作，将数据包进行克隆，每个bucket都拿到一份数据包
       2. select：会执行group其中的一个bucket。基于权重活着其他算法进行概率选择
       3. indirect：只支持一个bucket
       4. fastfailover：执行第一个alive的actionbucket，每一个actionbucket都关联了一个指定的port或者group来控制他的存活状态，buckets会依照group顺序依次被评估，并且第一个关联了一个live的port或者group的actionbucket会被筛选出来。这种group类型能够自行改变switch的转发行为而不需要请求控制器。如果没有bucket是存活的，那么数据包将被丢弃。因此必须实现存活管理机制
-   3. meter表：Meter计量表项被流表项（Flow Entry）所引用，为所有引用Meter表项的流表项提供报文限速的功能。一系列的Meter表项组成了Meter Table![image-20210303200749376](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303200749376.png)
-   4. openflow通信流程![image-20210303201144595](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303201144595.png)
+   3. meter表：Meter计量表项被流表项（Flow Entry）所引用，为所有引用Meter表项的流表项提供报文限速的功能。一系列的Meter表项组成了Meter Table
+      ![image-20210303200749376](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303200749376.png)
+   4. openflow通信流程
+      ![image-20210303201144595](https://github.com/zb1997/mynote/blob/main/tupian/image-20210303201144595.png)
       1. 双方建立连接之后，发送hello报文，用于协商协议版本
       2. freatures会有控制器洗发给交换机，用于控制器完成交换机的配置，然后通过setconfig完成交互机的配置（非必须）
       3. 当交换机收到数据包并匹配流表失败或者匹配到table-miss时，会发送packet_in到控制器，控制器会根据逻辑回复packet_out或者flow_mod知道交互机处理数据流，如果配置了flow-removed标志位，则当流表项过期时，交换机会向控制器回复flow-removed报文
