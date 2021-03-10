@@ -25,7 +25,25 @@
       2. 如果在内核没有匹配到流表项，那就upcall到上层，在经过vswitchd处理之后通过netlink将数据交给datapath转发，并更新流表。vswtichd的处理流程为先对用户空间流表进行匹配，成功则交给datapath进行转发，并将对应的流表项写入内核缓存，如果失败，则会根据openflow版本规范处理，比如上报给控制器或者丢弃，如果控制器处理成功则下发flow-mod报文，ovs将对应的flow-mod报文中的流表向写入用户态的流表空间，用于后续匹配
       3. 内核空间的缓存空间很小，存放的都是最新命中的最高命中率的流表项
 
-2. ovs配置gre隧道
+2. 流表匹配顺序：
+
+   1. 在2.*(某个版本)之后的版本，将单纯的精确匹配改换成了精确匹配+模糊匹配的方式，
+   2. 两条原则：
+      1. 优先级priority，优先级分布在0-65535，数值越高，优先级越高
+      2. 相同优先级，不同的区域匹配程度，按添加的时间先后顺序进行匹配
+   
+3. 修改流表的相关指令：
+
+   ```shell
+   sudo ovs-ofctl -O OpenFlow add-flow br0 "flows"
+   sudo ovs-ofctl -O OpenFlow del-flows br0 "flows"
+   sudo ovs-ofctl -O OpenFlow add-group br0 group_id=1,type=select,bucket=output:1
+   
+   ```
+
+   
+
+4. ovs配置gre隧道
 
    ```shell
    sudo ovs-ctl start
