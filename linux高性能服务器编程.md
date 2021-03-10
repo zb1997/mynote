@@ -97,7 +97,9 @@
 
 10. 拥塞控制   慢开始 拥塞避免 快重传 快恢复
 
-    ​	https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E4%BC%A0%E8%BE%93%E5%B1%82.md这篇文章中有比较形象的说明
+    ​	https://github.com/CyC2018/CS-Notes/blob/master/notes/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%20-%20%E4%BC%A0%E8%BE%93%E5%B1%82.md
+    
+    这篇文章中有比较形象的说明
 
 
 #### 第四章：TCP／IP通信案例
